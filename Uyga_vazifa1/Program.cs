@@ -82,8 +82,8 @@ foreach (var i in gmail)
     }
     else
     {
-        change += i;
+        change += item;
     }
     if (count == gmail.Length && count1 != 0) ;
-    Console.WriteLine($"manabu yaxshi variant{}");
+    Console.WriteLine($"manabu yaxshi variant{change}");
 }
