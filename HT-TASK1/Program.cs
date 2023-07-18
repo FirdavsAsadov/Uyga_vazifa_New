@@ -85,6 +85,9 @@ while (true)
     Console.WriteLine("Ikkinchi sonni kiriitng: ");
     var son2 = Console.ReadLine();
     string ifoda = $"{son1}{comand}{son2}";
+
+
+
     object result = bt.Compute(ifoda, "");
     Console.WriteLine($"Javob: {result}");
     Console.Write("Kalkulyator comand kiriting: ");

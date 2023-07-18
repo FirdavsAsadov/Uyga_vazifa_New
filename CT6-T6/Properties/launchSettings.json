@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "CT6-T6": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}
