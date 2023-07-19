@@ -49,8 +49,9 @@ for(int i = 0; i < metinglar.Length; i++)
     }
 }
 var maxmeting = During.Max();
-Console.WriteLine(maxmeting);
-
+Console.WriteLine($"Eng kop bolgan meting {maxmeting}");
+var minmeting = During.Min();
+Console.WriteLine($"Eng kam bolgan meting {minmeting}");
 
 
 
