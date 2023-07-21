@@ -49,13 +49,13 @@ int[,] balls = new int[,]
 menu:
 while (true)
 {
-    Console.WriteLine("1 - talabalar ro'yhati\n2 - to'lovlar\n3 - Baholar");
+    Console.WriteLine("1 - talabalar ro'yhati\n2 - to'lovlar\n3 - Baholar\n4-Talaba Qo'shish");
     var chose = Console.ReadKey().KeyChar;
     switch (chose)
     {
         case '1':
             Console.Clear();
-            var tanlov = "1 - DotNET\n2 - SMM\n3 - Python\n4 - Dizayn";
+            var tanlov = "1 - DotNET\n2 - SMM\n3 - Python\n4 - Dizayn\n5-Talaba Qo'shish\n6-Talaba Qo'shish";
             Console.WriteLine(tanlov);
             while (true)
             {
@@ -70,7 +70,7 @@ while (true)
                         foreach (var item in student)
                         {
                             if (item.EduType.ToLower() == "dotnet")
-                                Console.WriteLine($"{item.FullName} - {item.GetAge()} - {item.EduType}");
+                                Console.WriteLine($"{item.Id} - {item.FullName} - {item.GetAge()} - {item.EduType}");
                         }
                         Console.WriteLine("\n0 - ortga");
                         break;
@@ -78,7 +78,7 @@ while (true)
                         Console.Clear();
                         foreach (var item in student)
                             if (item.EduType.ToLower() == "smm")
-                                Console.WriteLine($"{item.FullName} - {item.GetAge()} - {item.EduType}");
+                                Console.WriteLine($"{item.Id}-{item.FullName} - {item.GetAge()} - {item.EduType}");
                         Console.WriteLine("\n0 - ortga");
 
                         break;
@@ -86,7 +86,7 @@ while (true)
                         Console.Clear();
                         foreach (var item in student)
                             if (item.EduType.ToLower() == "python")
-                                Console.WriteLine($"{item.FullName} - {item.GetAge()} - {item.EduType}");
+                                Console.WriteLine($"{item.Id} - {item.FullName} - {item.GetAge()} - {item.EduType}");
                         Console.WriteLine("\n0 - ortga");
 
                         break;
@@ -94,10 +94,44 @@ while (true)
                         Console.Clear();
                         foreach (var item in student)
                             if (item.EduType.ToLower() == "dizayn")
-                                Console.WriteLine($"{item.FullName} - {item.GetAge()} - {item.EduType}");
+                                Console.WriteLine($"{item.Id} - {item.FullName} - {item.GetAge()} - {item.EduType}");
                         Console.WriteLine("\n0 - ortga");
-
                         break;
+                        
+                    case '5':
+                        Console.Clear();
+                        foreach (var item in student)
+                        {
+                            Console.WriteLine(value: $"{item.Id} {item.FullName.PadRight(45, ' ')}");
+                        }
+                        Console.WriteLine("FIO: ");
+                        string Fio = Console.ReadLine();
+
+                        Console.WriteLine("Yo'nalish: ");
+                        string yonalish = Console.ReadLine();
+                        student.Add(new Student
+                        {
+                            Id = student.Last().Id + 1,
+                            FullName = Fio,
+                            BirthDay = DateTime.Now,
+                            EduType = yonalish
+                        });
+                        foreach (var item in student)
+                        {
+                            Console.WriteLine($"{item.Id} {item.FullName}");
+                        }
+                        break;
+                    case '6':
+                                    Console.Clear();
+                                    foreach (var item in student)
+                                    {
+                                        Console.WriteLine(value: $"{item.Id} {item.FullName.PadRight(45, ' ')}");
+                                    }
+                                    Console.WriteLine("O'chirmoqchi Bo'lgan Talabaning Id sini kiriting: ");
+                                    int id =  int.Parse(Console.ReadLine());
+                                    student.RemoveAt(id);
+                                    Console.WriteLine("O'chirildi");
+                                    break;
                     case '0':
                         Console.Clear();
                         goto menu;
@@ -205,6 +239,7 @@ while (true)
                 }
             }
 
+
             break;
         case 'q':
             goto x;
@@ -215,3 +250,6 @@ while (true)
 x:
     break;
 }
+
+
+
