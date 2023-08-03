@@ -1,11 +1,8 @@
-﻿public class Program
-{
-    Person person = new Person();
-    Person person1 = new Person("firdavs", 17, "Qashqadaryo");
-    Person person2 = new Person(new Person("firdavs", 17, "Qashqadaryo"));
+﻿
+Console.WriteLine("");
 
 
-}
+
 
 
 
@@ -33,9 +30,9 @@ public class Person
         Age = person.Age;
         City = person.City;
     }
-    static Person()
+    /*private Person()
     {
         Console.WriteLine("ishga tushdi: ");
 
-    }
+    }*/
 }
