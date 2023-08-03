@@ -1,6 +1,10 @@
-﻿public class Program
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public class Program
 {
-    static async void Main()
+    public static async Task Main()
     {
         CarRentalManagementservice carRentalManager = new CarRentalManagementservice();
         CarRental bmw1 = new Bmw("X5");
@@ -15,16 +19,27 @@
         carRentalManager.Add(audi1);
         carRentalManager.Add(audi2);
         carRentalManager.Add(audi3);
-        carRentalManager.Rent("Bmw");
-        carRentalManager.Rent("Audi");
 
-        await System.Threading.Tasks.Task.Delay(5000);
-        carRentalManager.Return(bmw1.id, bmw1.RentPricePerHour);
-        carRentalManager.Return(audi1.id, audi1.RentPricePerHour);
+        // Rent BMW X5 for 5 seconds
+        //carRentalManager.Rent("Audi");
+        //await Task.Delay(5000);
+        //carRentalManager.Return(audi1.id, audi1.RentPricePerHour);
+
+
+        var s = carRentalManager.Rent("BMW");
+        await Task.Delay(4000);
+        carRentalManager.Return(s);
+        var b = carRentalManager.Rent("Audi");
+        await Task.Delay(1000);
+        carRentalManager.Return(b);
+
+        // Calculate the balance
         carRentalManager.CalculateBalance();
-
     }
 }
+
+// The rest of your classes remain unchanged...
+
 public abstract class CarRental
     {
         public CarRental(string brandName)
@@ -38,8 +53,7 @@ public abstract class CarRental
 
         public string BrandName { get; set; }
         public Guid id { get; set; }
-        public abstract int RentPricePerHour { get; }
-        public abstract string ModelName { get; }
+        
 
 }
 
@@ -50,8 +64,8 @@ public sealed class Bmw : CarRental
         this.ModelName = modelName;
     }
 
-    public override int RentPricePerHour { get; } = 30;
-    public override string ModelName { get; }
+    public static int RentPricePerHour { get; } = 30;
+    public  string ModelName { get; }
 }
 
 public sealed class Audi : CarRental
@@ -61,8 +75,8 @@ public sealed class Audi : CarRental
         this.ModelName = modelName;
     }
 
-    public override int RentPricePerHour { get; } = 20;
-    public override string ModelName { get; }
+    public static int RentPricePerHour { get; } = 20;
+    public  string ModelName { get; }
 }
 
 
@@ -82,32 +96,55 @@ public class CarRentalManagementservice
     }
     
 
-    public void Rent(string brandName)
+    public CarRental Rent(string brandName)
     {
-        CarRental carRent = Cars.Find(car => car.BrandName == brandName && !car.IsRented);
-        if(carRent != null)
+        foreach (CarRental Car in Cars)
         {
-            carRent.RentStartTime = DateTime.Now;
-            carRent.IsRented = true;
+            
+            if (Car.BrandName == brandName)
+            {
+                Car.RentStartTime = DateTime.Now;
+                Car.IsRented = true;
+                return Car;
+            }
+
         }
-        else
-        {
-            Console.WriteLine("Uzr, hozirda ijaraga moshina yo'q");
-        }
+        Console.WriteLine("Mashina yo'q");
+        return null;
     } 
 
-    public CarRental Return(Guid id, int renPrice)
+    public void Return(CarRental car)
     {
-        CarRental carId = Cars.Find(car => car.id == id);
-        if(carId != null)
+        /*CarRental carId = Cars.Find(car => car.id == id);*/
+        foreach (CarRental Car in Cars)
         {
-            TimeSpan rentDuration = DateTime.Now - carId.RentStartTime;
-            int seconds = (int) rentDuration.TotalSeconds;
-            carId.Balance += renPrice * seconds;
-            carId.IsRented = false;
-            carId.RentStartTime = default(DateTime);
+            if (Car.id == car.id)
+            {
+                if (car.BrandName == "BMW")
+                {
+                    Car.IsRented = false;
+                    var rentduration = (DateTime.Now - car.RentStartTime).TotalSeconds;
+                    var seconds = (int)(rentduration);
+                    Car.Balance += Bmw.RentPricePerHour * seconds;
+
+                }
+                else if (car is Audi)
+                {
+                    Car.IsRented = false;
+                    var rentduration = (DateTime.Now - car.RentStartTime).TotalSeconds;
+                    var seconds = (int)(rentduration);
+                    Car.Balance += Audi.RentPricePerHour * seconds;
+                }
+                /*TimeSpan rentDuration = DateTime.Now - carId.RentStartTime;
+                int seconds = (int) rentDuration.TotalSeconds;
+                carId.Balance += renPrice * seconds;
+                carId.IsRented = false;
+                carId.RentStartTime = default(DateTime);*/
+            }
+            
         }
-        return carId; 
+        
+         
     }
 
     public void CalculateBalance()
