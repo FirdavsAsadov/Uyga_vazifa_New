@@ -19,8 +19,8 @@ public class SmartHomeService
 
     public void Activate()
     {
-        _isActivated = t
-            rue;
+        _isActivated = true;
+         
         Console.WriteLine($"SmartHome is activated. Device name: {DeviceName}");
     }
 
