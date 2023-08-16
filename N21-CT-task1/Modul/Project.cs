@@ -16,6 +16,10 @@ namespace N21_CT_task1.Modul
         {
 
         }
+        public override string ToString()
+        {
+            return $"Project ID: {Id}\nTitle: {Title}\nDescription: {Description}";
+        }
 
     }
 }

@@ -14,24 +14,26 @@ namespace N21_CT_task1.Modul
     internal class User : IUser
     {
        /* private static User _defaultAdmin;
-        public static User GetDefaultAdmin()
-        {
-            if (_defaultAdmin == null)
-                _defaultAdmin = new User();
-            return _defaultAdmin;
-        }*/
-        public User(byte roleID, string username, string password, string emailAddres)
+         public static User GetDefaultAdmin()
+         {
+             if (_defaultAdmin == null)
+                 _defaultAdmin = new User();
+             return _defaultAdmin;
+         }*/
+        public User(byte roleID, string username, string password, string emailAddres, string rating)
         {
             Username = username;
             Password = password;
             Email = emailAddres;
             RoleId = roleID;
+            Rating = rating;
         }
         public Guid Id { get; set; }
         public string Username { get; set; }
         public string Login { get; set; }
         public byte RoleId { get; set; }
         public string Password { get; set; }
+        public string Rating { get; set; }
 
 
         public string Email { get; set; }

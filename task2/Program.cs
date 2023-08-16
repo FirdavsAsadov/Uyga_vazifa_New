@@ -2,6 +2,7 @@
 
 var books = new List<Book>()
 {
+
     new Book(name: "Ishq Ertagi", 6, "John Bob"),
     new Book(name: "Yulduzlar Mangu Yonadi", 9, "Hakim ziyech"),
     new Book(name: "Sariq Devni minib", 7, "Xudoyberdi To'xtaboyev"),

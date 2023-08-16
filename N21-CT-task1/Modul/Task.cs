@@ -17,5 +17,12 @@ namespace N21_CT_task1.Modul
 
         public bool IsCompleted { get; set; }
         public readonly List<string> Comments;
+        public Task(string title, string descireption)
+        {
+            Id = Guid.NewGuid();
+            Title = title;
+            Description = descireption;
+            IsCompleted = false;
+        }
     }
 }
