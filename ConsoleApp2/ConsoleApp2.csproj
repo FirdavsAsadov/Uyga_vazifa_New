@@ -7,6 +7,10 @@
         <Nullable>enable</Nullable>
         <AssemblyName>N25-HT-Task1</AssemblyName>
         <RootNamespace>N25-HT-Task1</RootNamespace>
+    <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.4" />
+    </ItemGroup>
+
     </PropertyGroup>
 
 
