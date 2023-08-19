@@ -1,10 +1,14 @@
 ﻿//using CT6_T6;
+public class Program
+{
+    public static void Main(string[] args)
+    {
 
 //List<Student> students = new List<Student>()
 //{
 //    new Student(){ Id = 1, FullName = "Abdulxayev Jasurbek Anvar O'g'li",  Age = 18,  EduType = "DotNET", Payment = 2400000, IsPayable = true },
 //    new Student(){ Id = 2, FullName = "Abdumannonov Botirjon Davlat O'g'li",  Age = 20,  EduType = "Python", Payment = 2400000, IsPayable = false
-    
+
 //    },
 //    new Student(){ Id = 3, FullName = "Abdurahmonov Azizbek Alisher O'g'li",  Age = 21,  EduType = "DotNET", Payment = 2400000 },
 //    new Student(){ Id = 4, FullName = "Anvarjonov Ozodbek Avazxon O'g'li",  Age = 16,  EduType = "SMM", Payment = 2400000 },
@@ -78,39 +82,43 @@
 //            break;
 //    }
 //}
-string[] names = new string[5];
-names[0] = "firdavs";
-names[1] = "Abdurahmon";
-names[2] = "Azizbek";
-names[3] = "Qurbonali";
-names[4] = "ravshan";
-DateTime[] birthday = new DateTime[5];
-birthday[0] = new DateTime(2006, 11, 13);
-birthday[1] = new DateTime(2003, 12, 25);
-birthday[2] = new DateTime(2008, 1, 7);
-birthday[3] = new DateTime(2002, 6, 1);
-birthday[4] = new DateTime(2000, 2, 4);
 
-Array.Sort(birthday, names);
+        string[] names = new string[5];
+        names[0] = "firdavs";
+        names[1] = "Abdurahmon";
+        names[2] = "Azizbek";
+        names[3] = "Qurbonali";
+        names[4] = "ravshan";
+        DateTime[] birthday = new DateTime[5];
+        birthday[0] = new DateTime(2006, 11, 13);
+        birthday[1] = new DateTime(2003, 12, 25);
+        birthday[2] = new DateTime(2008, 1, 7);
+        birthday[3] = new DateTime(2002, 6, 1);
+        birthday[4] = new DateTime(2000, 2, 4);
+
+        Array.Sort(birthday, names);
 
 
-var temp = birthday[0];
-for (int indexA = 0; indexA < names.Length - 1; indexA++)
-{
-    for (int indexB = indexA + 1; indexB < names.Length; indexB++)
-    {
-        if (birthday[indexB].DayOfYear > birthday[indexA].DayOfYear)
+        var temp = birthday[0];
+        for (int indexA = 0; indexA < names.Length - 1; indexA++)
         {
-            temp = birthday[indexB];
-            birthday[indexA] = birthday[indexB];
-            birthday[indexB] = birthday[indexA]; 
-            var temp2 = names[indexA];
-            names[indexA] = names[indexB];
-            names[indexB] = temp2;
-        }
-        for (var i = 0; i < birthday.Length; i++)
-        {
-            Console.WriteLine(names[i] - birthday[i])
+            for (int indexB = indexA + 1; indexB < names.Length; indexB++)
+            {
+                if (birthday[indexB].DayOfYear > birthday[indexA].DayOfYear)
+                {
+                    temp = birthday[indexB];
+                    birthday[indexA] = birthday[indexB];
+                    birthday[indexB] = birthday[indexA];
+                    var temp2 = names[indexA];
+                    names[indexA] = names[indexB];
+                    names[indexB] = temp2;
+                }
+
+                for (var i = 0; i < birthday.Length; i++)
+                {
+                    Console.WriteLine();
+                }
+            }
         }
     }
-}  
+}
