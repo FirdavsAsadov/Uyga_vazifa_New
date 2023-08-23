@@ -1,0 +1,16 @@
+namespace N30_HT_Task2;
+
+public class Employee
+{
+    public Guid Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+
+    /*public Employee(string firstName, string lastName)
+    {
+        Id = Guid.NewGuid();
+        FirstName = firstName;
+        LastName = lastName;
+    }*/
+}
